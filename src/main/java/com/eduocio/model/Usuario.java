@@ -11,15 +11,24 @@ public class Usuario {
 	@Column(name = "ID", length = 11)
 	private int id;
 
-	@Column(name = "ID_USUARIO", length = 11)
+	@Column(name = "ID_USUARIO", length = 20)
 	private String id_usuario;
+
+	@Column(name = "CONTRASEÑA", length = 20)
+	private String clave;
+
+	@Column(name = "TIPO_DOCUMENTO", length = 5)
+	private String tipo_documento;
+
+	@Column(name = "NUMERO_DOCUMENTO", length = 30)
+	private String numero_documento;
 
 	@Column(name = "PRIMER_NOMBRE", length = 50)
 	private String primer_nombre;
 
 	@Column(name = "SEGUNDO_NOMBRE", length = 50)
 	private String segundo_nombre;
-
+	
 	@Column(name = "PRIMER_APELLIDO", length = 50)
 	private String primer_apellido;
 
@@ -32,6 +41,12 @@ public class Usuario {
 	@Column(name = "CELULAR", length = 10)
 	private int celular;
 
+	@Column(name = "DIRECCION", length = 80)
+	private String direccion;
+
+	@Column(name = "CIUDAD", length = 80)
+	private String ciudad;
+	
 	@Column(name = "ESTADO")
 	private boolean estado;
 
