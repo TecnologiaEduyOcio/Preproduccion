@@ -1,12 +1,19 @@
 package com.eduocio.model;
 
+import java.sql.Timestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(indexes = {
+		@Index(name = "IDX_NUMERO_DOCUMENTO", columnList = "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
+		@Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) })
 public class Usuario {
 	
 	public Usuario() {
@@ -14,35 +21,38 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", length = 11)
 	private int id;
 
+	@Id
+	@Column(name = "ID_USUARIO", length = 20)
 	private String id_usuario;
 
-	@Column(name = "CONTRASEÑA", length = 100)
+	@Column(name = "CONTRASEÑA", length = 20, nullable = false)
 	private String clave;
 
-	@Column(name = "TIPO_DOCUMENTO", length = 5)
+	@Column(name = "TIPO_DOCUMENTO", length = 5, nullable = false)
 	private String tipo_documento;
 
-	@Column(name = "NUMERO_DOCUMENTO", length = 30)
+	@Column(name = "NUMERO_DOCUMENTO", length = 30, nullable = false)
 	private String numero_documento;
 
-	@Column(name = "PRIMER_NOMBRE", length = 50)
+	@Column(name = "PRIMER_NOMBRE", length = 50, nullable = false)
 	private String primer_nombre;
 
 	@Column(name = "SEGUNDO_NOMBRE", length = 50)
 	private String segundo_nombre;
 
-	@Column(name = "PRIMER_APELLIDO", length = 50)
+	@Column(name = "PRIMER_APELLIDO", length = 50, nullable = false)
 	private String primer_apellido;
 
-	@Column(name = "SEGUNDO_APELLIDO", length = 50)
+	@Column(name = "SEGUNDO_APELLIDO", length = 50, nullable = false)
 	private String segundo_apellido;
 
-	@Column(name = "CORREO_ELECTRONICO", length = 50)
+	@Column(name = "CORREO_ELECTRONICO", length = 50, nullable = false)
 	private String correo_electronico;
 
-	@Column(name = "CELULAR", length = 10)
+	@Column(name = "CELULAR", length = 10, nullable = false)
 	private int celular;
 
 	@Column(name = "DIRECCION", length = 80)
@@ -51,15 +61,19 @@ public class Usuario {
 	@Column(name = "CIUDAD", length = 80)
 	private String ciudad;
 
-	@Column(name = "ESTADO")
-	private boolean estado;
+	@Column(name = "ESTADO", length = 2)
+	private int estado;
 
 	@Column(name = "ID_PERFIL", length = 20)
 	private String perfil;
 
+	@Column(name = "FECHA_CREACION")
+	private Timestamp fecha_creacion;
+
 	public Usuario(int id, String id_usuario, String clave, String tipo_documento, String numero_documento,
 			String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido,
-			String correo_electronico, int celular, String direccion, String ciudad, boolean estado, String perfil) {
+			String correo_electronico, int celular, String direccion, String ciudad, int estado, String perfil,
+			Timestamp fecha_creacion) {
 		super();
 		this.id = id;
 		this.id_usuario = id_usuario;
@@ -76,6 +90,7 @@ public class Usuario {
 		this.ciudad = ciudad;
 		this.estado = estado;
 		this.perfil = perfil;
+		this.fecha_creacion = fecha_creacion;
 	}
 
 	public int getId() {
@@ -182,11 +197,11 @@ public class Usuario {
 		this.ciudad = ciudad;
 	}
 
-	public boolean isEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(boolean estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
@@ -196,6 +211,14 @@ public class Usuario {
 
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
+	}
+
+	public Timestamp getFecha_creacion() {
+		return fecha_creacion;
+	}
+
+	public void setFecha_creacion(Timestamp fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
 	}
 
 }
