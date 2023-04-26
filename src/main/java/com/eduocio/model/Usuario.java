@@ -67,6 +67,29 @@ public class Usuario {
 	@Column(name = "FECHA_CREACION")
 	private Timestamp fecha_creacion;
 
+	public Usuario(int id, String id_usuario, String clave, String tipo_documento, String numero_documento,
+			String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido,
+			String correo_electronico, int celular, String direccion, String ciudad, int estado, String perfil,
+			Timestamp fecha_creacion) {
+		super();
+		this.id = id;
+		this.id_usuario = id_usuario;
+		this.clave = clave;
+		this.tipo_documento = tipo_documento;
+		this.numero_documento = numero_documento;
+		this.primer_nombre = primer_nombre;
+		this.segundo_nombre = segundo_nombre;
+		this.primer_apellido = primer_apellido;
+		this.segundo_apellido = segundo_apellido;
+		this.correo_electronico = correo_electronico;
+		this.celular = celular;
+		this.direccion = direccion;
+		this.ciudad = ciudad;
+		this.estado = estado;
+		this.perfil = perfil;
+		this.fecha_creacion = fecha_creacion;
+	}
+
 	public int getId() {
 		return id;
 	}
