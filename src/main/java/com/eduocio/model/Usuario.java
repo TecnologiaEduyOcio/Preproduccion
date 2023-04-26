@@ -2,11 +2,14 @@ package com.eduocio.model;
 
 import java.sql.Timestamp;
 
+import com.eduocio.model.ids.UsuarioIds;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
@@ -14,8 +17,9 @@ import jakarta.persistence.Table;
 @Table(indexes = {
 		@Index(name = "IDX_NUMERO_DOCUMENTO", columnList = "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
 		@Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) })
+@IdClass(UsuarioIds.class)
 public class Usuario {
-	
+
 	public Usuario() {
 	}
 
