@@ -15,6 +15,9 @@ import jakarta.persistence.Table;
 		@Index(name = "IDX_NUMERO_DOCUMENTO", columnList = "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
 		@Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) })
 public class Usuario {
+	
+	public Usuario() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
