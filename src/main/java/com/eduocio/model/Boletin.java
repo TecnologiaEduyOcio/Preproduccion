@@ -11,10 +11,6 @@ import jakarta.persistence.Table;
 @Table(name = "boletin_ofertas")
 public class Boletin {
 
-	public Boletin() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", length = 11)
@@ -24,10 +20,8 @@ public class Boletin {
 	@Column(name = "CORREO_ELECTRONICO", length = 30)
 	private String correo_electronico;
 
-	public Boletin(int id, String correo_electronico) {
+	public Boletin() {
 		super();
-		this.id = id;
-		this.correo_electronico = correo_electronico;
 	}
 
 	public int getId() {
