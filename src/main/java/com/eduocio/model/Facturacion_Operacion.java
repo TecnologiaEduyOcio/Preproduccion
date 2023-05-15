@@ -42,17 +42,8 @@ public class Facturacion_Operacion {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_facturacion_operacion")
 	private List<Log_Facturacion_Operacion> log_facturacion_operacion;
 
-	public Facturacion_Operacion(int id, int id_venta, int porcentaje_referido, int numero_venta, int porcentaje_asesor,
-			int valor_referido, int valor_asesor, String estado) {
+	public Facturacion_Operacion() {
 		super();
-		this.id = id;
-		this.id_venta = id_venta;
-		this.porcentaje_referido = porcentaje_referido;
-		this.numero_venta = numero_venta;
-		this.porcentaje_asesor = porcentaje_asesor;
-		this.valor_referido = valor_referido;
-		this.valor_asesor = valor_asesor;
-		this.estado = estado;
 	}
 
 	public int getId() {

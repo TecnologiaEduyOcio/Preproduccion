@@ -48,7 +48,6 @@ public class Curso {
 
 	public Curso() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {

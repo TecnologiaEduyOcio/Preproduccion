@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-
 public class Ventas {
 
 	@Id
@@ -55,7 +54,6 @@ public class Ventas {
 
 	public Ventas() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {

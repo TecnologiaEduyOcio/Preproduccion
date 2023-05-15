@@ -47,7 +47,6 @@ public class Producto {
 
 	public Producto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {

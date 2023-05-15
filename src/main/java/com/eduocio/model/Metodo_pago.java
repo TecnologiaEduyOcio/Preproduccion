@@ -7,8 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-
 public class Metodo_pago {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", length = 11)
@@ -26,12 +26,13 @@ public class Metodo_pago {
 	@Column(name = "CELULAR", length = 10)
 	private int celular;
 
+	// @OneToOne(mappedBy = "Metodo_pago", cascade = CascadeType.ALL)
+	// private Usuario Usuario;
 	@Column(name = "ID_USUARIO", length = 11)
 	private int id_usuario;
 
 	public Metodo_pago() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -81,8 +82,5 @@ public class Metodo_pago {
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
-
-	// @OneToOne(mappedBy = "Metodo_pago", cascade = CascadeType.ALL)
-	// private Usuario Usuario;
 
 }
