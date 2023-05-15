@@ -2,22 +2,23 @@ package com.eduocio.model;
 
 import java.sql.Timestamp;
 
+import com.eduocio.model.ids.UsuarioIds;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(indexes = {
+@Table(name = "usuarios", indexes = {
 		@Index(name = "IDX_NUMERO_DOCUMENTO", columnList = "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
 		@Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) })
+@IdClass(UsuarioIds.class)
 public class Usuario {
-	
-	public Usuario() {
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,27 +71,11 @@ public class Usuario {
 	@Column(name = "FECHA_CREACION")
 	private Timestamp fecha_creacion;
 
-	public Usuario(int id, String id_usuario, String clave, String tipo_documento, String numero_documento,
-			String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido,
-			String correo_electronico, int celular, String direccion, String ciudad, int estado, String perfil,
-			Timestamp fecha_creacion) {
+	@Column(name = "CODIGO_USUARIO")
+	private String codigo_usuario;
+
+	public Usuario() {
 		super();
-		this.id = id;
-		this.id_usuario = id_usuario;
-		this.clave = clave;
-		this.tipo_documento = tipo_documento;
-		this.numero_documento = numero_documento;
-		this.primer_nombre = primer_nombre;
-		this.segundo_nombre = segundo_nombre;
-		this.primer_apellido = primer_apellido;
-		this.segundo_apellido = segundo_apellido;
-		this.correo_electronico = correo_electronico;
-		this.celular = celular;
-		this.direccion = direccion;
-		this.ciudad = ciudad;
-		this.estado = estado;
-		this.perfil = perfil;
-		this.fecha_creacion = fecha_creacion;
 	}
 
 	public int getId() {
@@ -219,6 +204,14 @@ public class Usuario {
 
 	public void setFecha_creacion(Timestamp fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public String getCodigo_usuario() {
+		return codigo_usuario;
+	}
+
+	public void setCodigo_usuario(String codigo_usuario) {
+		this.codigo_usuario = codigo_usuario;
 	}
 
 }
