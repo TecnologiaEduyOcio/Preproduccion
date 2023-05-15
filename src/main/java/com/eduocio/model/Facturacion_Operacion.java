@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Facturacion_Operacion {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", length = 11)
@@ -20,30 +20,27 @@ public class Facturacion_Operacion {
 
 	@Column(name = "ID_VENTA", length = 2)
 	private int id_venta;
-	
+
 	@Column(name = "PORCENTAJE_REFERIDO", length = 2)
 	private int porcentaje_referido;
-	
-	
+
 	@Column(name = "NUMERO_VENTA", length = 2)
 	private int numero_venta;
-	
+
 	@Column(name = "PORCENTAJE_ASESOR", length = 2)
 	private int porcentaje_asesor;
-	
 
 	@Column(name = "VALOR_REFERIDO", length = 11)
 	private int valor_referido;
-	
 
 	@Column(name = "VALOR_ASESOR", length = 11)
 	private int valor_asesor;
-	
+
 	@Column(name = "ESTADO", length = 20)
 	private String estado;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_facturacion_operacion")
-    private List<Log_Facturacion_Operacion> log_facturacion_operacion;
+	private List<Log_Facturacion_Operacion> log_facturacion_operacion;
 
 	public Facturacion_Operacion(int id, int id_venta, int porcentaje_referido, int numero_venta, int porcentaje_asesor,
 			int valor_referido, int valor_asesor, String estado) {
@@ -121,13 +118,5 @@ public class Facturacion_Operacion {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
 
-
-
-	
-	
 }
-
-

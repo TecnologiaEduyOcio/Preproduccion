@@ -10,40 +10,41 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+
 @Entity
 public class Curso {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", length = 11)
 	private int id;
-	
+
 	@Column(name = "TITULO", length = 20)
 	private String titulo;
-	
+
 	@Column(name = "DESCRIPCION", length = 1000)
 	private String descripcion;
-	
+
 	@Column(name = "DURACION_TOTAL", length = 1000)
 	private String DURACION_TOTAL;
-	
+
 	@Column(name = "TOTAL_VIDEOS", length = 11)
 	private int total_videos;
-	
+
 	@Column(name = "VALOR_TOTAL", length = 11)
 	private int valor_total;
-	
+
 	@Column(name = "RUTA_PRINCIPAL", length = 300)
 	private String ruta_principal;
-	
+
 	@Column(name = "MINIATURA", length = 300)
 	private String miniatura;
-	
+
 	@Column(name = "FECHA_CREACION")
 	private Timestamp FECHA_CREACION;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
-    private List<Producto> producto;
+	private List<Producto> producto;
 
 	public Curso() {
 		super();
@@ -129,7 +130,4 @@ public class Curso {
 	public void setProducto(List<Producto> producto) {
 		this.producto = producto;
 	}
-
-	
-
 }
