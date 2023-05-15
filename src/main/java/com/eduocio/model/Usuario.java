@@ -14,7 +14,7 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(indexes = {
+@Table(name = "usuarios",indexes = {
 		@Index(name = "IDX_NUMERO_DOCUMENTO", columnList = "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
 		@Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) })
 @IdClass(UsuarioIds.class)
@@ -73,6 +73,8 @@ public class Usuario {
 
 	@Column(name = "FECHA_CREACION")
 	private Timestamp fecha_creacion;
+	
+
 
 	public Usuario(int id, String id_usuario, String clave, String tipo_documento, String numero_documento,
 			String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido,
