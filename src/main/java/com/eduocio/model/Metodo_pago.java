@@ -17,14 +17,14 @@ public class Metodo_pago {
 	@Column(name = "NOMBRE_TITULAR_TARJETA", length = 20)
 	private String nombre_titular_tarjeta;
 
-	@Column(name = "NUMERO_TARJETA", length = 16)
-	private int numero_tarjeta;
+	@Column(name = "NUMERO_TARJETA", length = 20)
+	private String numero_tarjeta;
 
 	@Column(name = "CORREO_ELECTRONICO", length = 20)
 	private String correo_electronico;
 
 	@Column(name = "CELULAR", length = 10)
-	private int celular;
+	private String celular;
 
 	// @OneToOne(mappedBy = "Metodo_pago", cascade = CascadeType.ALL)
 	// private Usuario Usuario;
@@ -51,11 +51,11 @@ public class Metodo_pago {
 		this.nombre_titular_tarjeta = nombre_titular_tarjeta;
 	}
 
-	public int getNumero_tarjeta() {
+	public String getNumero_tarjeta() {
 		return numero_tarjeta;
 	}
 
-	public void setNumero_tarjeta(int numero_tarjeta) {
+	public void setNumero_tarjeta(String numero_tarjeta) {
 		this.numero_tarjeta = numero_tarjeta;
 	}
 
@@ -67,11 +67,11 @@ public class Metodo_pago {
 		this.correo_electronico = correo_electronico;
 	}
 
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 

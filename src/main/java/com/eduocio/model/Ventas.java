@@ -19,8 +19,8 @@ public class Ventas {
 	@Column(name = "ID", length = 11)
 	private int id;
 
-	@Column(name = "NUMERO_VENTA", length = 2)
-	private int numero_venta;
+	@Column(name = "NUMERO_VENTA", length = 20)
+	private String numero_venta;
 
 	@Column(name = "ORDEN", length = 2)
 	private int orden;
@@ -31,7 +31,7 @@ public class Ventas {
 	@Column(name = "CUPON_REFERIDO", length = 20)
 	private String cupon_referido;
 
-	@Column(name = "CUDIGO_ASESOR", length = 20)
+	@Column(name = "CODIGO_ASESOR", length = 20)
 	private String codigo_asesor;
 
 	@Column(name = "FECHA_VENTA")
@@ -64,11 +64,11 @@ public class Ventas {
 		this.id = id;
 	}
 
-	public int getNumero_venta() {
+	public String getNumero_venta() {
 		return numero_venta;
 	}
 
-	public void setNumero_venta(int numero_venta) {
+	public void setNumero_venta(String numero_venta) {
 		this.numero_venta = numero_venta;
 	}
 

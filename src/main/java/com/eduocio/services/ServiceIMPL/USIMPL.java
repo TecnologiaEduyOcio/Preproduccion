@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.eduocio.model.Usuario;
-import com.eduocio.model.ids.UsuarioIds;
 import com.eduocio.repository.IUsuarioRepo;
 import com.eduocio.services.UsuarioService;
 
@@ -35,7 +34,7 @@ public class USIMPL implements UsuarioService {
 		return this.repo.save(usuario);
 	}
 
-	public Usuario BuscarUsuario(UsuarioIds id) {
+	public Usuario BuscarUsuario(int id) {
 		return this.repo.findById(id).get();
 	}
 }

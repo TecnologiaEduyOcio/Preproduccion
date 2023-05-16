@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eduocio.model.Usuario;
-import com.eduocio.model.ids.UsuarioIds;
 import com.eduocio.services.ServiceIMPL.USIMPL;
 
 @RestController
@@ -53,9 +52,7 @@ public class UsuarioController {
 	@RequestMapping(value = "ConsultarUsuario/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> ConsultarUsuario(@PathVariable int id) {
 
-		UsuarioIds usuid = new UsuarioIds(id, null);
-
-		Usuario usuario = this.usimpl.BuscarUsuario(usuid);
+		Usuario usuario = this.usimpl.BuscarUsuario(id);
 
 		return ResponseEntity.ok(usuario);
 	}

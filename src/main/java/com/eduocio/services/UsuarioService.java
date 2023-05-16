@@ -3,7 +3,6 @@ package com.eduocio.services;
 import java.util.List;
 
 import com.eduocio.model.Usuario;
-import com.eduocio.model.ids.UsuarioIds;
 
 public interface UsuarioService {
 
@@ -13,6 +12,6 @@ public interface UsuarioService {
 
 	public Usuario ModificarUsuario(Usuario usuario);
 
-	public Usuario BuscarUsuario(UsuarioIds id);
+	public Usuario BuscarUsuario(int id);
 
 }
