@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eduocio.model.Usuario;
 import com.eduocio.model.ids.UsuarioIds;
-import com.eduocio.services.UsuarioServiceIMPL.USIMPL;
+import com.eduocio.services.ServiceIMPL.USIMPL;
 
 @RestController
 @RequestMapping("GestionUsuario")

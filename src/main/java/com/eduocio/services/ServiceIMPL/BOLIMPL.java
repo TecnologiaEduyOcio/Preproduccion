@@ -1,4 +1,4 @@
-package com.eduocio.services.BoletinServiceIMPL;
+package com.eduocio.services.ServiceIMPL;
 
 import java.util.List;
 

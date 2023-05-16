@@ -1,4 +1,4 @@
-package com.eduocio.services.UsuarioServiceIMPL;
+package com.eduocio.services.ServiceIMPL;
 
 import java.util.List;
 
