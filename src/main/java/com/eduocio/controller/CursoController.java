@@ -3,6 +3,8 @@ package com.eduocio.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,14 @@ public class CursoController {
 	@RequestMapping(value = "ConsultarCursos", method = RequestMethod.GET)
 	public ResponseEntity<?> ConsultarCursos() {
 		List<Curso> list = this.impl.consultar_todo();
+
+		return ResponseEntity.ok(list);
+	}
+
+	@GetMapping
+	@RequestMapping(value = "ConsultarCursos/pagina", method = RequestMethod.GET)
+	public ResponseEntity<Page<?>> ConsultarCursosPaginas(Pageable p) {
+		Page<Curso> list = this.impl.consultar_todo_page(p);
 
 		return ResponseEntity.ok(list);
 	}

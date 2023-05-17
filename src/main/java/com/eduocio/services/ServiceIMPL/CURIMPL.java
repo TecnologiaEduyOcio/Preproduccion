@@ -3,6 +3,8 @@ package com.eduocio.services.ServiceIMPL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.eduocio.model.Curso;
@@ -34,6 +36,11 @@ public class CURIMPL implements CursoService {
 	@Override
 	public Curso BuscarCurso(int id) {
 		return this.repo.findById(id).get();
+	}
+
+	@Override
+	public Page<Curso> consultar_todo_page(Pageable p) {
+		return (Page<Curso>) this.repo.findAll(p);
 	}
 
 }
