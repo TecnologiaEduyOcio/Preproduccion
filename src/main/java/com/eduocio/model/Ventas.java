@@ -9,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Ventas {
@@ -37,11 +39,13 @@ public class Ventas {
 	@Column(name = "FECHA_VENTA")
 	private Timestamp fecha_venta;
 
-	@Column(name = "ID_PRODUCTO", length = 2)
-	private int id_producto;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "producto_id", referencedColumnName = "id")
+	private Producto producto;
 
-	@Column(name = "ID_USUARIO", length = 20)
-	private String id_usuario;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
 
 	@Column(name = "PORCENTAJE_DESCUENTO", length = 2)
 	private int porcentaje_descuento;
@@ -112,22 +116,6 @@ public class Ventas {
 		this.fecha_venta = fecha_venta;
 	}
 
-	public int getId_producto() {
-		return id_producto;
-	}
-
-	public void setId_producto(int id_producto) {
-		this.id_producto = id_producto;
-	}
-
-	public String getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(String id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-
 	public int getPorcentaje_descuento() {
 		return porcentaje_descuento;
 	}
@@ -150,6 +138,22 @@ public class Ventas {
 
 	public void setFacturacion_operacion(List<Facturacion_Operacion> facturacion_operacion) {
 		this.facturacion_operacion = facturacion_operacion;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

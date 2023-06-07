@@ -9,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Curso {
@@ -45,6 +47,10 @@ public class Curso {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private List<Producto> producto;
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
 
 	public Curso() {
 		super();
@@ -129,4 +135,13 @@ public class Curso {
 	public void setProducto(List<Producto> producto) {
 		this.producto = producto;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }
