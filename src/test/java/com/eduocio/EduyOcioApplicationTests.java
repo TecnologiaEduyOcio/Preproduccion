@@ -6,30 +6,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class EduyOcioApplicationTests {
 
-//	@Autowired
-//	private IUsuarioRepo repo;
-
-//	@Autowired
-//	private BCryptPasswordEncoder encoder;
-
 	@Test
 	void crearUsuarioTest() {
+		String cadena = "";
+		String banco = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMÑOPQRSTUVWXYZ1234567890";
 
-//		Usuario us = new Usuario(0, "mtjorgex", encoder.encode("12345"), null, null, null, null, null, null, null, 0,
-//				null, null, false, null);
-//
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		try {
-//			String usuarioJson = objectMapper.writeValueAsString(us);
-//			System.out.println(usuarioJson);
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		Usuario retorno = repo.save(us);
-//
-//		assertTrue(retorno.getClave().equalsIgnoreCase(us.getClave()));
+		for (int x = 0; x < 8; x++) {
+
+			int index = (int) (Math.random() * 64) + 1;
+			System.err.println(index);
+			char caracteraleatorio = banco.charAt(index);
+			cadena += caracteraleatorio;
+
+		}
+		System.out.println(cadena);
 	}
-
 }

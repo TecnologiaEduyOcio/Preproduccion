@@ -2,13 +2,18 @@ package com.eduocio.model;
 
 import java.sql.Timestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "producto")
 public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,8 +47,8 @@ public class Producto {
 	@Column(name = "MINIATURA", length = 300)
 	private String miniatura;
 
-	@Column(name = "ID_CURSO", length = 11)
-	private int id_curso;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Curso curso;
 
 	public Producto() {
 		super();
@@ -129,12 +134,12 @@ public class Producto {
 		this.miniatura = miniatura;
 	}
 
-	public int getId_curso() {
-		return id_curso;
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setId_curso(int id_curso) {
-		this.id_curso = id_curso;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 }
