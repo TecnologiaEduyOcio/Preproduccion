@@ -45,11 +45,14 @@ public class Curso {
 	@Column(name = "FECHA_CREACION")
 	private Timestamp FECHA_CREACION;
 
+	@Column(name = "ESTADO")
+	private String estado;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private List<Producto> producto;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
 
 	public Curso() {
@@ -142,6 +145,14 @@ public class Curso {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }
