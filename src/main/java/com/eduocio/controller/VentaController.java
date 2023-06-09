@@ -56,14 +56,13 @@ public class VentaController {
 			for (int x = 0; x < 8; x++) {
 
 				int index = (int) (Math.random() * 64) + 1;
-				System.err.println(index);
 				char caracteraleatorio = banco.charAt(index);
 				cadena += caracteraleatorio;
 			}
 
 			Codigos_Ventas cod1 = this.cmpl.consultar_codigo(cadena);
 
-			if (cod1 != null) {
+			if (cod1 == null) {
 
 				Codigos_Ventas cod = new Codigos_Ventas();
 
