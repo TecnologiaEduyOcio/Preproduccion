@@ -57,4 +57,13 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuario);
 	}
 
+	@GetMapping
+	@RequestMapping(value = "Login/{id_usuario}/{clave}", method = RequestMethod.GET)
+	public ResponseEntity<?> ConsultarUsuario(@PathVariable String id_usuario,@PathVariable String clave) {
+
+		Usuario usuario = this.usimpl.Login(id_usuario, clave);
+
+		return ResponseEntity.ok(usuario);
+	}
+
 }

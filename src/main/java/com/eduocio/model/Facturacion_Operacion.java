@@ -39,7 +39,7 @@ public class Facturacion_Operacion {
 	@Column(name = "ESTADO", length = 20)
 	private String estado;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_facturacion_operacion")
+	@OneToMany(mappedBy = "id_facturacion_operacion")
 	private List<Log_Facturacion_Operacion> log_facturacion_operacion;
 
 	public Facturacion_Operacion() {

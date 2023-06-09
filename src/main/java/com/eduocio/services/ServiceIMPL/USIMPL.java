@@ -37,4 +37,8 @@ public class USIMPL implements UsuarioService {
 	public Usuario BuscarUsuario(int id) {
 		return this.repo.findById(id).get();
 	}
+
+	public Usuario Login(String id_usuario, String contraseña) {
+		return this.repo.Login(id_usuario, contraseña);
+	}
 }

@@ -3,7 +3,6 @@ package com.eduocio.model;
 import java.sql.Timestamp;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,10 +47,10 @@ public class Curso {
 	@Column(name = "ESTADO")
 	private String estado;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+	@OneToMany(mappedBy = "id")
 	private List<Producto> producto;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
 

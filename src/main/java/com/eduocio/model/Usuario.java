@@ -1,5 +1,6 @@
 package com.eduocio.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
@@ -7,14 +8,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Index;
+//import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuarios", indexes = {
-		@Index(name = "IDX_NUMERO_DOCUMENTO", columnList = "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
-		@Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) })
-public class Usuario {
+@Table(name = "usuarios"/*
+						 * , indexes = {
+						 * 
+						 * @Index(name = "IDX_NUMERO_DOCUMENTO", columnList =
+						 * "TIPO_DOCUMENTO, NUMERO_DOCUMENTO", unique = true),
+						 * 
+						 * @Index(name = "IDX_ID_USUARIO", columnList = "ID_USUARIO", unique = true) }
+						 */)
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

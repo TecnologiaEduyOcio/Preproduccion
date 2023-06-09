@@ -1,20 +1,23 @@
 package com.eduocio.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "producto")
-public class Producto {
+public class Producto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", length = 11)
@@ -46,9 +49,6 @@ public class Producto {
 
 	@Column(name = "MINIATURA", length = 300)
 	private String miniatura;
-
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Curso curso;
 
 	public Producto() {
 		super();
@@ -132,14 +132,6 @@ public class Producto {
 
 	public void setMiniatura(String miniatura) {
 		this.miniatura = miniatura;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
 	}
 
 }
