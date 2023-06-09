@@ -3,7 +3,7 @@ package com.eduocio.model;
 import java.sql.Timestamp;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+//import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,12 +39,12 @@ public class Ventas {
 	@Column(name = "FECHA_VENTA")
 	private Timestamp fecha_venta;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "producto_id", referencedColumnName = "id")
+	@OneToOne()
+	@JoinColumn(name = "producto_id", referencedColumnName = "id")
 	private Producto producto;
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	@OneToOne()
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
 
 	@Column(name = "PORCENTAJE_DESCUENTO", length = 2)
@@ -53,7 +53,7 @@ public class Ventas {
 	@Column(name = "ESTADO", length = 20)
 	private String estado;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_venta")
+	@OneToMany(mappedBy = "id_venta")
 	private List<Facturacion_Operacion> facturacion_operacion;
 
 	public Ventas() {

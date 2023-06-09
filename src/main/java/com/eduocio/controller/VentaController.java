@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eduocio.model.Ventas;
+import com.eduocio.services.ServiceIMPL.PROIMPL;
+import com.eduocio.services.ServiceIMPL.USIMPL;
 import com.eduocio.services.ServiceIMPL.VENIMPL;
 
 @RestController
@@ -26,6 +28,10 @@ public class VentaController {
 
 	@Autowired
 	private VENIMPL impl;
+	@Autowired
+	private USIMPL umpl;
+	@Autowired
+	private PROIMPL pmpl;
 
 	@GetMapping
 	@RequestMapping(value = "ConsultarVentas", method = RequestMethod.GET)
@@ -38,6 +44,12 @@ public class VentaController {
 	@PostMapping
 	@RequestMapping(value = "CrearVenta", method = RequestMethod.POST)
 	public ResponseEntity<?> CrearVenta(@RequestBody Ventas venta) {
+
+		// Usuario user = this.umpl.BuscarUsuario(venta.getUsuario());
+		// Producto pro = this.pmpl.BuscarProducto(venta.getProducto());
+
+//		Ventas vent = new Ventas().se
+		// venta.setUsuario(user);
 
 		Ventas creado = this.impl.CrearVenta(venta);
 		return ResponseEntity.status(HttpStatus.CREATED).body(creado);
