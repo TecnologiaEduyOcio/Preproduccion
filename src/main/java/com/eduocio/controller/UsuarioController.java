@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eduocio.model.Usuario;
@@ -58,10 +59,12 @@ public class UsuarioController {
 	}
 
 	@GetMapping
-	@RequestMapping(value = "Login/{id_usuario}/{clave}", method = RequestMethod.GET)
-	public ResponseEntity<?> ConsultarUsuario(@PathVariable String id_usuario,@PathVariable String clave) {
+	@RequestMapping(value = "Login", method = RequestMethod.GET)
+	public ResponseEntity<?> ConsultarUsuario(
+			@RequestParam(name = "correo_electronico", required = true) String correo_electronico,
+			@RequestParam(name = "clave", required = true) String clave) {
 
-		Usuario usuario = this.usimpl.Login(id_usuario, clave);
+		Usuario usuario = this.usimpl.Login(correo_electronico, clave);
 
 		return ResponseEntity.ok(usuario);
 	}
