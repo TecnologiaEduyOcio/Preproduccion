@@ -8,7 +8,7 @@ import com.eduocio.model.Usuario;
 
 public interface IUsuarioRepo extends CrudRepository<Usuario, Integer> {
 
-	@Query("SELECT u FROM Usuario u WHERE u.id_usuario = :id_usuario AND u.clave = :clave")
-	Usuario Login(@Param("id_usuario") String id_usuario, @Param("clave") String clave);
+	@Query("SELECT u FROM Usuario u WHERE u.correo_electronico = :correo_electronico AND u.clave = :clave")
+	Usuario Login(@Param("correo_electronico") String correo_electronico, @Param("clave") String clave);
 
 }
