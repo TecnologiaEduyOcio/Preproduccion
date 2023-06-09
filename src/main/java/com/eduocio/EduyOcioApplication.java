@@ -19,7 +19,9 @@ public class EduyOcioApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedOrigins("https://pruebas.eduyocio.com/").allowedMethods("*")
-						.allowedHeaders("*");
+				.allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200/").allowedMethods("*")
+				.allowedHeaders("*");
 			}
 		};
 	}
