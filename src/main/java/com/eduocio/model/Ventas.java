@@ -1,15 +1,17 @@
 package com.eduocio.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Ventas {
@@ -19,7 +21,7 @@ public class Ventas {
 	@Column(name = "ID", length = 11)
 	private int id;
 
-	@Column(name = "NUMERO_VENTA", length = 2)
+	@Column(name = "NUMERO_VENTA", length = 20)
 	private int numero_venta;
 
 	@Column(name = "ORDEN", length = 2)
@@ -31,17 +33,19 @@ public class Ventas {
 	@Column(name = "CUPON_REFERIDO", length = 20)
 	private String cupon_referido;
 
-	@Column(name = "CUDIGO_ASESOR", length = 20)
+	@Column(name = "CODIGO_ASESOR", length = 20)
 	private String codigo_asesor;
 
 	@Column(name = "FECHA_VENTA")
-	private Timestamp fecha_venta;
+	private Date fecha_venta;
 
-	@Column(name = "ID_PRODUCTO", length = 2)
-	private int id_producto;
+	@OneToOne()
+	@JoinColumn(name = "producto_id", referencedColumnName = "id")
+	private Producto producto;
 
-	@Column(name = "ID_USUARIO", length = 20)
-	private String id_usuario;
+	@OneToOne()
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
 
 	@Column(name = "PORCENTAJE_DESCUENTO", length = 2)
 	private int porcentaje_descuento;
@@ -49,8 +53,16 @@ public class Ventas {
 	@Column(name = "ESTADO", length = 20)
 	private String estado;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_venta")
+	@Column(name = "CUPON_CREADOR", length = 20)
+	private String cupon_creado;
+
+	@OneToMany(mappedBy = "id_venta")
 	private List<Facturacion_Operacion> facturacion_operacion;
+
+	@PrePersist
+	void fechaCrea() {
+		fecha_venta = new Date(System.currentTimeMillis());
+	}
 
 	public Ventas() {
 		super();
@@ -104,28 +116,20 @@ public class Ventas {
 		this.codigo_asesor = codigo_asesor;
 	}
 
-	public Timestamp getFecha_venta() {
+	public Date getFecha_venta() {
 		return fecha_venta;
 	}
 
-	public void setFecha_venta(Timestamp fecha_venta) {
+	public void setFecha_venta(Date fecha_venta) {
 		this.fecha_venta = fecha_venta;
 	}
 
-	public int getId_producto() {
-		return id_producto;
+	public String getCupon_creado() {
+		return cupon_creado;
 	}
 
-	public void setId_producto(int id_producto) {
-		this.id_producto = id_producto;
-	}
-
-	public String getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(String id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setCupon_creado(String cupon_creado) {
+		this.cupon_creado = cupon_creado;
 	}
 
 	public int getPorcentaje_descuento() {
@@ -150,6 +154,22 @@ public class Ventas {
 
 	public void setFacturacion_operacion(List<Facturacion_Operacion> facturacion_operacion) {
 		this.facturacion_operacion = facturacion_operacion;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

@@ -16,7 +16,6 @@ public class Boletin {
 	@Column(name = "ID", length = 11)
 	private int id;
 
-	@Id
 	@Column(name = "CORREO_ELECTRONICO", length = 30)
 	private String correo_electronico;
 

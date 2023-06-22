@@ -2,7 +2,6 @@ package com.eduocio.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,8 +23,8 @@ public class Facturacion_Operacion {
 	@Column(name = "PORCENTAJE_REFERIDO", length = 2)
 	private int porcentaje_referido;
 
-	@Column(name = "NUMERO_VENTA", length = 2)
-	private int numero_venta;
+	@Column(name = "NUMERO_VENTA", length = 20)
+	private String numero_venta;
 
 	@Column(name = "PORCENTAJE_ASESOR", length = 2)
 	private int porcentaje_asesor;
@@ -39,7 +38,7 @@ public class Facturacion_Operacion {
 	@Column(name = "ESTADO", length = 20)
 	private String estado;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_facturacion_operacion")
+	@OneToMany(mappedBy = "id_facturacion_operacion")
 	private List<Log_Facturacion_Operacion> log_facturacion_operacion;
 
 	public Facturacion_Operacion() {
@@ -70,11 +69,11 @@ public class Facturacion_Operacion {
 		this.porcentaje_referido = porcentaje_referido;
 	}
 
-	public int getNumero_venta() {
+	public String getNumero_venta() {
 		return numero_venta;
 	}
 
-	public void setNumero_venta(int numero_venta) {
+	public void setNumero_venta(String numero_venta) {
 		this.numero_venta = numero_venta;
 	}
 

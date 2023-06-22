@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.eduocio.model.Boletin;
-import com.eduocio.services.BoletinServiceIMPL.BOLIMPL;
+import com.eduocio.services.ServiceIMPL.BOLIMPL;
 
+@RestController
+@RequestMapping("GestionBoletin")
 public class BoletinController {
 
 	public BoletinController() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Autowired
