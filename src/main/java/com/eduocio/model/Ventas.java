@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
 
 @Entity
 public class Ventas {
@@ -30,7 +29,6 @@ public class Ventas {
 	@Column(name = "CUPON_VENTA", length = 20)
 	private String cupon_venta;
 
-	
 	@Column(name = "CUPON_REFERIDO", length = 20)
 	private String cupon_referido;
 
@@ -42,7 +40,7 @@ public class Ventas {
 
 	@OneToOne()
 	@JoinColumn(name = "curso_id", referencedColumnName = "id")
-	private Producto producto;
+	private Curso curso;
 
 	@OneToOne()
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
@@ -62,7 +60,6 @@ public class Ventas {
 
 	public Ventas() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -121,12 +118,12 @@ public class Ventas {
 		this.fecha_venta = fecha_venta;
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 	public Usuario getUsuario() {
@@ -169,5 +166,4 @@ public class Ventas {
 		this.facturacion_operacion = facturacion_operacion;
 	}
 
-	
 }
