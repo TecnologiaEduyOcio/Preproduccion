@@ -80,7 +80,7 @@ public class VentaController {
 
 				venta.setCupon_venta(cadena);
 
-				Curso curso = this.cumpl.BuscarCurso(venta.getProducto().getId());
+				Curso curso = this.cumpl.BuscarCurso(venta.getCurso().getId());
 				if (curso != null) {
 					Ventas creado = this.impl.CrearVenta(venta);
 					if (r != null && creado != null) {
@@ -91,7 +91,7 @@ public class VentaController {
 					}
 				} else {
 					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-							.body("Por favor valide que el curso numero: " + venta.getProducto().getId()
+							.body("Por favor valide que el curso numero: " + venta.getCurso().getId()
 									+ ", Si esta ccreado correctamente!.");
 				}
 			} else {
