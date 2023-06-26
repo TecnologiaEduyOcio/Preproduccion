@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eduocio.model.Codigos_Ventas;
+import com.eduocio.model.Curso;
 import com.eduocio.model.Pedidos;
 import com.eduocio.model.Ventas;
 import com.eduocio.services.ServiceIMPL.CODIMPL;
+import com.eduocio.services.ServiceIMPL.CURIMPL;
 import com.eduocio.services.ServiceIMPL.PEDIMPL;
 import com.eduocio.services.ServiceIMPL.VENIMPL;
 
@@ -34,6 +36,8 @@ public class VentaController {
 	private CODIMPL cmpl;
 	@Autowired
 	private PEDIMPL pmpl;
+	@Autowired
+	private CURIMPL cumpl;
 
 	@GetMapping
 	@RequestMapping(value = "ConsultarVentas", method = RequestMethod.GET)
@@ -76,14 +80,19 @@ public class VentaController {
 
 				venta.setCupon_venta(cadena);
 
-				Ventas creado = this.impl.CrearVenta(venta);
-
-				if (r != null && creado != null) {
-					return ResponseEntity.status(HttpStatus.CREATED).body(creado);
-
+				Curso curso = this.cumpl.BuscarCurso(venta.getProducto().getId());
+				if (curso != null) {
+					Ventas creado = this.impl.CrearVenta(venta);
+					if (r != null && creado != null) {
+						return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+					} else {
+						return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+								.body("Error al crear el codigo o la venta por favor contacte a soporte");
+					}
 				} else {
 					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-							.body("Error al crear el codigo o la venta por favor contacte a soporte");
+							.body("Por favor valide que el curso numero: " + venta.getProducto().getId()
+									+ ", Si esta ccreado correctamente!.");
 				}
 			} else {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -110,5 +119,4 @@ public class VentaController {
 		Ventas buscado = this.impl.BuscarVenta(id);
 		return ResponseEntity.ok(buscado);
 	}
-
 }
