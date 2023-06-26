@@ -40,7 +40,7 @@ public class Ventas {
 	private Date fecha_venta;
 
 	@OneToOne()
-	@JoinColumn(name = "producto_id", referencedColumnName = "id")
+	@JoinColumn(name = "curso_id", referencedColumnName = "id")
 	private Producto producto;
 
 	@OneToOne()
@@ -59,13 +59,9 @@ public class Ventas {
 	@OneToMany(mappedBy = "id_venta")
 	private List<Facturacion_Operacion> facturacion_operacion;
 
-	@PrePersist
-	void fechaCrea() {
-		fecha_venta = new Date(System.currentTimeMillis());
-	}
-
 	public Ventas() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -124,12 +120,20 @@ public class Ventas {
 		this.fecha_venta = fecha_venta;
 	}
 
-	public String getCupon_creado() {
-		return cupon_creado;
+	public Producto getProducto() {
+		return producto;
 	}
 
-	public void setCupon_creado(String cupon_creado) {
-		this.cupon_creado = cupon_creado;
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public int getPorcentaje_descuento() {
@@ -148,6 +152,14 @@ public class Ventas {
 		this.estado = estado;
 	}
 
+	public String getCupon_creado() {
+		return cupon_creado;
+	}
+
+	public void setCupon_creado(String cupon_creado) {
+		this.cupon_creado = cupon_creado;
+	}
+
 	public List<Facturacion_Operacion> getFacturacion_operacion() {
 		return facturacion_operacion;
 	}
@@ -156,20 +168,5 @@ public class Ventas {
 		this.facturacion_operacion = facturacion_operacion;
 	}
 
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 }
