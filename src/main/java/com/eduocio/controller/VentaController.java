@@ -55,7 +55,7 @@ public class VentaController {
 
 			for (int x = 0; x < 8; x++) {
 
-				int index = (int) (Math.random() * 64) + 1;
+				int index = (int) (Math.random() * 60) + 1;
 				char caracteraleatorio = banco.charAt(index);
 				cadena += caracteraleatorio;
 			}
