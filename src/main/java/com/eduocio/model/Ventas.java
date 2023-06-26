@@ -30,6 +30,7 @@ public class Ventas {
 	@Column(name = "CUPON_VENTA", length = 20)
 	private String cupon_venta;
 
+	
 	@Column(name = "CUPON_REFERIDO", length = 20)
 	private String cupon_referido;
 
