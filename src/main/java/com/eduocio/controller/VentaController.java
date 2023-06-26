@@ -53,9 +53,11 @@ public class VentaController {
 			String cadena = "";
 			String banco = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMÑOPQRSTUVWXYZ1234567890";
 
+			int index = 0;
+
 			for (int x = 0; x < 8; x++) {
 
-				int index = (int) (Math.random() * 60) + 1;
+				index = (int) (Math.random() * 60) + 1;
 				char caracteraleatorio = banco.charAt(index);
 				cadena += caracteraleatorio;
 			}
