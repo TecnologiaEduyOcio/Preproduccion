@@ -48,60 +48,69 @@ public class VentaController {
 	}
 
 	@PostMapping("/CrearVenta")
-	public ResponseEntity<?> CrearVenta(@RequestBody Ventas venta) {
+	public ResponseEntity<?> CrearVenta(@RequestBody List<Ventas> venta) {
 
-		Pedidos ped = this.pmpl.BuscarPedidoID(venta.getNumero_venta());
+		int orden = 0;
 
-		if (ped != null) {
+		for (Ventas ventas : venta) {
 
-			String cadena = "";
-			String banco = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMÑOPQRSTUVWXYZ1234567890";
+			orden++;
 
-			int index = 0;
+			ventas.setOrden(orden);
+			Pedidos ped = this.pmpl.BuscarPedidoID(ventas.getNumero_venta());
 
-			for (int x = 0; x < 8; x++) {
+			if (ped != null) {
 
-				index = (int) (Math.random() * 60) + 1;
-				char caracteraleatorio = banco.charAt(index);
-				cadena += caracteraleatorio;
-			}
+				String cadena = "";
+				String banco = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMÑOPQRSTUVWXYZ1234567890";
 
-			Codigos_Ventas cod1 = this.cmpl.consultar_codigo(cadena);
+				int index = 0;
 
-			if (cod1 == null) {
+				for (int x = 0; x < 8; x++) {
 
-				Codigos_Ventas cod = new Codigos_Ventas();
+					index = (int) (Math.random() * 60) + 1;
+					char caracteraleatorio = banco.charAt(index);
+					cadena += caracteraleatorio;
+				}
 
-				cod.setCodigo_generado(cadena);
-				cod.setEstado(1);
-				cod.setId(0);
+				Codigos_Ventas cod1 = this.cmpl.consultar_codigo(cadena);
 
-				Codigos_Ventas r = this.cmpl.CrearCodigo(cod);
+				if (cod1 == null) {
 
-				venta.setCupon_venta(cadena);
+					Codigos_Ventas cod = new Codigos_Ventas();
 
-				Curso curso = this.cumpl.BuscarCurso(venta.getCurso().getId());
-				if (curso != null) {
-					Ventas creado = this.impl.CrearVenta(venta);
-					if (r != null && creado != null) {
-						return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+					cod.setCodigo_generado(cadena);
+					cod.setEstado(1);
+					cod.setId(0);
+
+					Codigos_Ventas r = this.cmpl.CrearCodigo(cod);
+
+					ventas.setCupon_venta(cadena);
+
+					Curso curso = this.cumpl.BuscarCurso(ventas.getCurso().getId());
+					if (curso != null) {
+						Ventas creado = this.impl.CrearVenta(ventas);
+						if (r != null && creado != null) {
+							return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+						} else {
+							return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+									.body("Error al crear el codigo o la venta por favor contacte a soporte");
+						}
 					} else {
 						return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-								.body("Error al crear el codigo o la venta por favor contacte a soporte");
+								.body("Por favor valide que el curso numero: " + ventas.getCurso().getId()
+										+ ", Si esta ccreado correctamente!.");
 					}
 				} else {
 					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-							.body("Por favor valide que el curso numero: " + venta.getCurso().getId()
-									+ ", Si esta ccreado correctamente!.");
+							.body("Error en el codigo creado ya existe");
 				}
 			} else {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-						.body("Error en el codigo creado ya existe");
+						.body("Error Numero de pedido no existe por favor validar!.");
 			}
-		} else {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Error Numero de pedido no existe por favor validar!.");
 		}
+		return null;
 	}
 
 	@PutMapping
